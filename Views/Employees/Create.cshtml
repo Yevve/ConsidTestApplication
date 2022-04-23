@@ -1,0 +1,67 @@
+﻿@model ConsidTestApplication.Models.Employees
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Employees</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+               
+                <fieldset>Rank<select id= "RankId" name= "Salary">
+                <option value= "1">Rank:1</option>
+                <option value= "2">Rank:2</option>
+                <option value= "3">Rank:3</option>
+                <option value= "4">Rank:4</option>
+                <option value= "5">Rank:5</option>
+                <option value= "6">Rank:6</option>
+                <option value= "7">Rank:7</option>
+                <option value= "8">Rank:8</option>
+                <option value= "9">Rank:9</option>
+                <option value= "10">Rank:10</option>
+                </select>
+                </fieldset>          
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsCEO" /> @Html.DisplayNameFor(model => model.IsCEO)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsManager" /> @Html.DisplayNameFor(model => model.IsManager)
+                </label>
+            </div>
+            <div class="form-group">
+               @Html.DropDownList("ManagerId",new SelectList(ViewBag.ManagerList,"Id","FullName"),"Select Manager")
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
